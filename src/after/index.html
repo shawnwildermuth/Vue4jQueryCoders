@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+      content="ie=edge">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <!-- Adapted from https://blog.teamtreehouse.com/code-a-simple-github-api-webapp-using-jquery-ajax -->
+  </head>
+
+  <body>
+    <div id="w" class="container">
+      <h1>Simple Github API Webapp</h1>
+      <p>Enter a single Github username below and
+        click the button to display profile info
+        via JSON.
+      </p>
+
+      <div class="row">
+        <div class="col-6">
+          <input type="text" class="form-control"
+            id="ghusername"
+            placeholder="Github username..."
+            autofocus="autofocus"
+            v-model="userName">
+        </div>
+
+        <div class="col-6">
+          <button class="btn btn-success"
+            v-on:click="onSubmit()">
+            Pull User Data
+          </button>
+        </div>
+
+        <div id="ghapidata" class="clearfix">
+          <div id="loader" v-if="isBusy"><img
+              src="https://i.imgur.com/UqLN6nl.gif"
+              alt="loading..."></div>
+          <div v-if="error">
+            <h2>{{ error }}</h2>
+          </div>
+
+          <!-- User Info -->
+          <div v-if="user">
+            <h2>{{ user.name }}<span
+                class="smallname">(@<a
+                  v-bind:href="user.html_url"
+                  target="_blank">{{ user.login }}</a>)</span>
+            </h2>
+            <div class="ghcontent">
+              <div>
+                <a v-bind:href="user.login"
+                  target="_blank">
+                  <img
+                    v-bind:src="user.avatar_url"
+                    width="80" height="80"
+                    class="img-thumbnail float-left m-1"
+                    v-bind:alt="user.login">
+                </a>
+              </div>
+              <p>Followers: {{ user.followers }} -
+                Following:
+                {{ user.following }}<br>Repos:
+                {{ user.public_repos}}</p>
+            </div>
+            <div class="clearfix">
+              <p><strong>Repos List:</strong></p>
+              <p
+                v-if="!user.repos || user.repos.length == 0">
+                No Repos</p>
+              <div>
+                <a v-for="repo in user.repos"
+                  v-bind:key="repo.html_url"
+                  v-bind:href="repo.html_url"
+                  class="btn btn-sm btn-info m-1"
+                  target="_blank">{{ repo.name }}</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js">
+    </script>
+    <!-- development version, includes helpful console warnings -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+    </script>
+    <!-- <script src="site.js"></script> -->
+    <script src="site-vue.js"></script>
+  </body>
+
+</html>

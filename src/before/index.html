@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+      content="ie=edge">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <!-- Adapted from https://blog.teamtreehouse.com/code-a-simple-github-api-webapp-using-jquery-ajax -->
+  </head>
+
+  <body>
+    <div id="w" class="container">
+      <h1>Simple Github API Webapp</h1>
+      <p>Enter a single Github username below and
+        click the button to display profile info
+        via JSON.</p>
+
+      <div class="row">
+        <div class="col-6">
+          <input type="text" class="form-control"
+            id="ghusername"
+            placeholder="Github username..."
+            autofocus="autofocus">
+        </div>
+
+        <div class="col-6">
+          <button class="btn btn-success"
+            id="ghsubmitbtn">Pull User
+            Data</button>
+        </div>
+
+        <div id="ghapidata" class="clearfix">
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js">
+    </script>
+    <script src="site.js"></script>
+  </body>
+
+</html>
